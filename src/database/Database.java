@@ -3,6 +3,8 @@ package database;
 import model.Person;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Database {
     private static Database instance =null;
@@ -42,10 +44,15 @@ public class Database {
     }
 
 
-    public Person[] getallData() throws SQLException{
+    public List<Person> getallData() throws SQLException{
+        List<Person> personen = new LinkedList<>();
         PreparedStatement ps = c.prepareStatement("SELECT * FROM Person p INNER JOIN Adresse a ON a.id=p.adresse");
         ResultSet rs = ps.executeQuery();
-        System.out.println(rs);;
-        return null;
+
+        while(rs.next()){
+            personen.add(new Person(rs.getString(1),rs.getString(2),rs.getString(3)));
+        }
+
+        return personen;
     }
 }

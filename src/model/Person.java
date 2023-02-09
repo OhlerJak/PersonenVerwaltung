@@ -5,13 +5,24 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import view.PersonController;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Person {
     private final StringProperty vorname = new SimpleStringProperty();
     private final StringProperty wohnort = new SimpleStringProperty();
     private final StringProperty id = new SimpleStringProperty();
+    public Person(){
+
+    }
+
+    public Person(String id, String vorname, String wohnort){
+        setWohnort(wohnort);
+        setVorname(vorname);
+        setId(id);
+    }
 
     public String getVorname() {
         return vorname.get();
@@ -50,10 +61,10 @@ public class Person {
     }
 
     public ObservableList<Person> getPersonList() throws SQLException{
-        Person[] data = Database.getInstance().getallData();
+        List<Person> data = Database.getInstance().getallData();
 
         if(data!=null)
-        return FXCollections.observableArrayList(data);
+        return FXCollections.observableList(data);
         return null;
     }
 
