@@ -46,7 +46,7 @@ public class Database {
 
     public List<Person> getallData() throws SQLException{
         List<Person> personen = new LinkedList<>();
-        PreparedStatement ps = c.prepareStatement("SELECT * FROM Person p INNER JOIN Adresse a ON a.id=p.adresse");
+        PreparedStatement ps = c.prepareStatement("SELECT p.id, p.name, a.wohnort FROM Person p INNER JOIN Adresse a ON a.id=p.adresse");
         ResultSet rs = ps.executeQuery();
 
         while(rs.next()){

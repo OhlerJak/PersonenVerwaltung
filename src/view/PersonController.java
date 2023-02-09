@@ -42,6 +42,7 @@ public class PersonController {
     @FXML
     private void initialize(){
         model = new Person();
+        refresh();
         
     }
 

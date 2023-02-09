@@ -75,4 +75,9 @@ public class Person {
     public void setIDasInt(int id){
         setId(id+"");
     }
+
+    @Override
+    public String toString() {
+        return getId()+" "+getVorname()+" "+getWohnort();
+    }
 }
