@@ -73,11 +73,12 @@ public class PersonController {
 
     private void saveModel(){
         try {
+            Integer.parseInt(tfID.getText());
             model.setId(tfID.getText());
             model.setVorname(tfVorname.getText());
             model.setWohnort(tfWohnort.getText());
             model.save();
-        } catch (SQLException e) {
+        } catch (SQLException | NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.setTitle("Fehler");
             alert.showAndWait();
