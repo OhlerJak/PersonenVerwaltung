@@ -20,9 +20,13 @@ public class Database {
     private Connection c;
 
     public Database()  {
-        try{
+        try {
+            c = DriverManager.getConnection("jdbc:derby://localhost:1527/PersonDB;create=true","app","password");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-        c = DriverManager.getConnection("jdbc:derby://localhost:1527/PersonDB;","app","password");
+        try{
         // Create DB
         Statement s = c.createStatement();
 
@@ -38,9 +42,17 @@ public class Database {
         return c;
     }
 
-    public void insertAdresse(){
-//        PreparedStatement ps = c.prepareStatement()
-        // PreparedStatement ps = c.createStatement()
+    public void savePerson(Person p) throws SQLException {
+        PreparedStatement ps = c.prepareStatement("insert into Adresse(id, wohnort) values (?, ?)");
+        ps.setInt(1, Integer.parseInt(p.getId()));
+        ps.setString(2, p.getWohnort());
+        ps.executeUpdate();
+
+        ps = c.prepareStatement("insert into Person(id, name, adresse) values (?, ?, ?)");
+        ps.setInt(1, Integer.parseInt(p.getId()));
+        ps.setString(2, p.getVorname());
+        ps.setString(3, p.getId());
+        ps.executeUpdate();
     }
 
 

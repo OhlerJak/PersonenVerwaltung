@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox prefHeight="400.0" prefWidth="600.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PersonController">
+<VBox prefHeight="400.0" prefWidth="600.0" spacing="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PersonController">
     <padding>
         <Insets topRightBottomLeft="10" />
     </padding>
@@ -29,8 +29,8 @@
     </GridPane>
     <HBox spacing="10" VBox.vgrow="ALWAYS">
         <Button fx:id="btRefresh" onAction="#refreshOnAction">Refresh</Button>
-        <Button fx:id="btCancel" onAction="#cancelOnAction">Cancel</Button>
-        <Button fx:id="btSave" onAction="#saveOnAction">Save</Button>
+        <Button fx:id="btCancel" onAction="#cancelOnAction" cancelButton="true">Cancel</Button>
+        <Button fx:id="btSave" onAction="#saveOnAction" defaultButton="true">Save</Button>
     </HBox>
     <ListView fx:id="lvPersonen">
 

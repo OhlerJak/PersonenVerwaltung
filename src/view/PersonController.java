@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -35,6 +36,7 @@ public class PersonController {
             stage.setScene(new Scene(parent));
             stage.setTitle("Personen Verwaltung");
             stage.show();
+            ((PersonController)loader.getController()).refresh();
         }catch (Exception e) {
            e.printStackTrace();
         }
@@ -42,8 +44,7 @@ public class PersonController {
     @FXML
     private void initialize(){
         model = new Person();
-        refresh();
-        
+
     }
 
     private void refresh() {
@@ -61,8 +62,25 @@ public class PersonController {
     }
 
     public void cancelOnAction(ActionEvent actionEvent) {
+        tfID.setText("");
+        tfVorname.setText("");
+        tfWohnort.setText("");
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
+        saveModel();
+    }
+
+    private void saveModel(){
+        try {
+            model.setId(tfID.getText());
+            model.setVorname(tfVorname.getText());
+            model.setWohnort(tfWohnort.getText());
+            model.save();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.setTitle("Fehler");
+            alert.showAndWait();
+        }
     }
 }
