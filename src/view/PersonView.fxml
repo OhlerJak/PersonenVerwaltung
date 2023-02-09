@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox prefHeight="400.0" prefWidth="600.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PersonController">
+    <padding>
+        <Insets topRightBottomLeft="10" />
+    </padding>
+
+    <GridPane hgap="5" vgap="10">
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="0">ID</Label>
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="tfID" />
+
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="1">Vorname</Label>
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="tfVorname" />
+
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="2">Wohnort</Label>
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="tfWohnort"/>
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints hgrow="ALWAYS" />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+    <HBox spacing="10" VBox.vgrow="ALWAYS">
+        <Button fx:id="btRefresh" onAction="#refreshOnAction">Refresh</Button>
+        <Button fx:id="btCancel" onAction="#cancelOnAction">Cancel</Button>
+        <Button fx:id="btSave" onAction="#saveOnAction">Save</Button>
+    </HBox>
+    <ListView fx:id="lvPersonen">
+
+    </ListView>
+
+</VBox>
