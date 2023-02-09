@@ -76,6 +76,10 @@ public class Person {
         setId(id+"");
     }
 
+    public void save() throws SQLException {
+        Database.getInstance().savePerson(this);
+    }
+
     @Override
     public String toString() {
         return getId()+" "+getVorname()+" "+getWohnort();
