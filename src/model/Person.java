@@ -69,14 +69,18 @@ public class Person {
     }
 
 
-    public int getIDasInt(){
-        return Integer.parseInt(id.get());
+    public int getIDasInt() throws PersonException {
+        try {
+            return Integer.parseInt(id.get());
+        }catch (NumberFormatException e){
+            throw new PersonException("ID is not a Number");
+        }
     }
     public void setIDasInt(int id){
         setId(id+"");
     }
 
-    public void save() throws SQLException {
+    public void save() throws SQLException, PersonException {
         Database.getInstance().savePerson(this);
     }
 

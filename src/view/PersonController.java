@@ -44,6 +44,9 @@ public class PersonController {
     @FXML
     private void initialize(){
         model = new Person();
+        tfID.textProperty().bindBidirectional(model.idProperty());
+        tfVorname.textProperty().bindBidirectional(model.vornameProperty());
+        tfWohnort.textProperty().bindBidirectional(model.wohnortProperty());
 
     }
 
@@ -62,26 +65,33 @@ public class PersonController {
     }
 
     public void cancelOnAction(ActionEvent actionEvent) {
-        tfID.setText("");
-        tfVorname.setText("");
-        tfWohnort.setText("");
+        cancel();
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
         saveModel();
     }
+    private void cancel(){
+        tfID.textProperty().unbindBidirectional(model.idProperty());
+        tfVorname.textProperty().unbindBidirectional(model.vornameProperty());
+        tfWohnort.textProperty().unbindBidirectional(model.wohnortProperty());
+        tfID.setText("");
+        tfVorname.setText("");
+        tfWohnort.setText("");
+        model = new Person();
+        tfID.textProperty().bindBidirectional(model.idProperty());
+        tfVorname.textProperty().bindBidirectional(model.vornameProperty());
+        tfWohnort.textProperty().bindBidirectional(model.wohnortProperty());
+    }
 
     private void saveModel(){
         try {
-            Integer.parseInt(tfID.getText());
-            model.setId(tfID.getText());
-            model.setVorname(tfVorname.getText());
-            model.setWohnort(tfWohnort.getText());
             model.save();
-        } catch (SQLException | NumberFormatException e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.setTitle("Fehler");
             alert.showAndWait();
         }
+        cancel();
     }
 }

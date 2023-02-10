@@ -1,6 +1,7 @@
 package database;
 
 import model.Person;
+import model.PersonException;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -42,16 +43,16 @@ public class Database {
         return c;
     }
 
-    public void savePerson(Person p) throws SQLException {
+    public void savePerson(Person p) throws SQLException, PersonException {
         PreparedStatement ps = c.prepareStatement("insert into Adresse(id, wohnort) values (?, ?)");
-        ps.setInt(1, Integer.parseInt(p.getId()));
+        ps.setInt(1, p.getIDasInt());
         ps.setString(2, p.getWohnort());
         ps.executeUpdate();
 
         ps = c.prepareStatement("insert into Person(id, name, adresse) values (?, ?, ?)");
-        ps.setInt(1, Integer.parseInt(p.getId()));
+        ps.setInt(1, p.getIDasInt());
         ps.setString(2, p.getVorname());
-        ps.setString(3, p.getId());
+        ps.setInt(3, p.getIDasInt());
         ps.executeUpdate();
     }
 
