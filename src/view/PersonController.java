@@ -87,11 +87,12 @@ public class PersonController {
     private void saveModel(){
         try {
             model.save();
+            cancel();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.setTitle("Fehler");
             alert.showAndWait();
         }
-        cancel();
+
     }
 }

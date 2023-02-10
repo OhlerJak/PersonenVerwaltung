@@ -15,7 +15,7 @@ public class Person {
     private final StringProperty wohnort = new SimpleStringProperty();
     private final StringProperty id = new SimpleStringProperty();
     public Person(){
-
+        this("","","");
     }
 
     public Person(String id, String vorname, String wohnort){
@@ -81,7 +81,12 @@ public class Person {
     }
 
     public void save() throws SQLException, PersonException {
+        checkInputs();
         Database.getInstance().savePerson(this);
+    }
+    private void checkInputs() throws PersonException {
+        if(getWohnort().length()<3)throw new PersonException("Wohnort muss mindestens drei Zeichen haben");
+        if (getVorname().length()<3)throw new PersonException("Name muss mindestens drei Zeichen haben");
     }
 
     @Override
