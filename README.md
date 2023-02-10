@@ -7,6 +7,6 @@ In diesem "Projekt" arbeiten:</br>
  Mit FXML und Derby.
 
 
-Um das Programm nutzen zu können muss eine Derby-Datenbank auf dem Port 1527 laufen.
-  Diese muss die Datenbank "PersonDB" mit dem Schema APP enthalten.
-  Der Tabellen werden selbst erstellt (Test User nicht)
+  Um das Programm nutzen zu können muss eine Derby-Datenbank auf dem Port 1527 laufen
+  Die library derbyclient.jar muss vorhanden sein.
+  Das Programm erzeugt (wenn noch nich vohanden) die Datenbank "PersonDB"

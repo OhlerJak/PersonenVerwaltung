@@ -62,9 +62,7 @@ public class PersonController {
     }
 
     public void cancelOnAction(ActionEvent actionEvent) {
-        tfID.setText("");
-        tfVorname.setText("");
-        tfWohnort.setText("");
+        cancel();
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
@@ -78,10 +76,20 @@ public class PersonController {
             model.setVorname(tfVorname.getText());
             model.setWohnort(tfWohnort.getText());
             model.save();
+
+            new Alert(Alert.AlertType.INFORMATION, "Saved").showAndWait();
+
+            cancel();
         } catch (SQLException | NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.setTitle("Fehler");
             alert.showAndWait();
         }
+    }
+
+    private void cancel(){
+        tfID.setText("");
+        tfVorname.setText("");
+        tfWohnort.setText("");
     }
 }
